@@ -1,0 +1,26 @@
+# Videos
+*.mp4
+data/videos/
+data/clip_frames/
+
+# Model files
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+
+# ---- Python ----
+__pycache__/
+*.py[codz]
+*.egg-info/
+build/
+dist/
+.idea/
+
+# Virtual environment folders
+.venv/
+venv/
+env/
+ENV/
+
