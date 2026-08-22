@@ -1,81 +1,91 @@
 pair_id,folder,role,sub_order,label,username,duration_sec
-1,2021.07.16.18.06.21_veh-38_01526_02150,L,,Take me to the Luxor.,grod,49.4
-1,2021.07.16.18.06.21_veh-38_01526_02150,sub,1,Get in your left lane then merge to the left lane again. Go past this stop sign and at the next intersection turn left. Pull up to the front of of this hotel.,grod,49.4
-2,2021.07.16.23.22.27_veh-14_01631_03833,L,,Drop me off at the Wynn.,grod,231.3
-2,2021.07.16.23.22.27_veh-14_01631_03833,sub,1,"Head straight until you pass the light next to the Palazzo, then get in your right turn lane, turn left at the next light, and stop in front of the hotel entrance.",grod,231.3
-3,2021.07.16.18.19.22_veh-35_00440_00858,L,,Take me to Paris Las Vegas.,grod,177.9
-3,2021.07.16.18.19.22_veh-35_00440_00858,sub,1,"Head straight in this lane until right before you reach the intersection next to the Arte Museum Las Vegas, then merge one lane to the right. Continue past the intersection, turn right at the second light, and stop in front of the hotel entrance.",grod,177.9
-4,2021.07.16.18.19.22_veh-35_00869_03454,L,,Go to the Luxor.,grod,198.1
-4,2021.07.16.18.19.22_veh-35_00869_03454,sub,1,"Turn left at this light, merge three lanes to the right when it is safe, then when you pass the Statue of Liberty merge one lane to the right and get in your right turn lane. Make a right at this next light and get into your left lane. Go past the stop sign, make a left at the next intersection and stop in front of the hotel doors. Continue straight and exit to the right of the stop sign.",grod,198.1
-5,2021.07.16.18.19.22_veh-35_00869_03454,L,,Make a drop off at the Luxor.,grod,198.1
-5,2021.07.16.18.19.22_veh-35_00869_03454,sub,1,"Turn left at this light, merge three lanes to the right when it is safe, then when you pass the Statue of Liberty merge one lane to the right and get in your right turn lane. Make a right at this next light and get into your left lane. Go past the stop sign, make a left at the next intersection and stop in front of the hotel doors. Continue straight and exit to the right of the stop sign.",grod,198.1
-6,2021.07.16.23.22.27_veh-14_03844_04474,L,,Drop me off at the Wynn.,grod,165.8
-6,2021.07.16.23.22.27_veh-14_03844_04474,sub,1,"Continue straight past this light then get in your right lane. At the next light make a right turn, then stop and wait in front of the hotel entrance.",grod,165.8
-7,2021.07.16.23.22.27_veh-14_03844_04474,L,,Pick up my friend at the Wynn.,grod,165.8
-7,2021.07.16.23.22.27_veh-14_03844_04474,sub,1,"Continue straight past this light then get in your right lane. At the next light make a right turn, then stop and wait in front of the hotel entrance.",grod,165.8
-8,2021.06.14.18.42.45_veh-12_01065_01152,L,,Take me to the Luxor.,grod,27.9
-8,2021.06.14.18.42.45_veh-12_01065_01152,sub,1,make a left turn and temporarily stop at the center of the entrance,parthib,35.2
-8,2021.06.14.18.42.45_veh-12_01065_01152,sub,2,Yield to the oncoming vehicles and turn left into the building. Enter the drop off zone and stop.,giovanni,26.8
-9,2021.06.14.18.42.45_veh-12_01065_01152,L,,Pull into the Luxor.,grod,33
-9,2021.06.14.18.42.45_veh-12_01065_01152,sub,1,make a left turn and temporarily stop at the center of the entrance,parthib,35.2
-9,2021.06.14.18.42.45_veh-12_01065_01152,sub,2,Yield to the oncoming vehicles and turn left into the building. Enter the drop off zone and stop.,giovanni,26.8
-10,2021.06.14.18.42.45_veh-12_01680_01744,L,,Pull into Paris Las Vegas.,grod,29
-10,2021.06.14.18.42.45_veh-12_01680_01744,sub,1,"make the same right turn as the black car in front of you, then go into the roundabout toward the exit",parthib,29.9
-11,2021.06.14.18.42.45_veh-12_01680_01744,L,,Drop me off in front of Paris Hotel.,grod,25.2
-11,2021.06.14.18.42.45_veh-12_01680_01744,sub,1,"make the same right turn as the black car in front of you, then go into the roundabout toward the exit",parthib,29.9
-12,2021.06.14.18.42.45_veh-12_03445_03902,L,,Take me to the Paris Hotel.,grod,82.5
-12,2021.06.14.18.42.45_veh-12_03445_03902,sub,1,switch into the right lane after passing three stoplights. make the right turn into paris las vegas and go around the roundabout/. you will make a left turn when the light turns green,parthib,209.1
-12,2021.06.14.18.42.45_veh-12_03445_03902,sub,2,Merge one lane to the right. Follow the white truck. At the next crosswalk turn right. Enter the diamond services and stop at a drop off zone. Look for oncoming vehicles before leaving the drop off zone. Stop at the red traffic light.,giovanni,140.8
-12,2021.06.14.18.42.45_veh-12_03445_03902,sub,3,"keep straight. before the light, turn right on that street. take a left at the diamond center sign. stop behind the car with the guy at the door. turn to the lane on the left and continue straight.",Jeevan,47.6
-12,2021.06.14.18.42.45_veh-12_03445_03902,sub,4,Follow the white truck. Turn right at the crosswalk. Enter the diamond seven star drop off zone and come to a stop. Look for oncoming vehicles and leave the drop off zone. Make a stop for the upcoming red traffic light.,giovanni,85.3
-13,2021.06.23.14.54.32_veh-16_00421_00625,L,,Drive toward the Veer towers straight ahead.,grod,70.5
-13,2021.06.23.14.54.32_veh-16_00421_00625,sub,1,Stop for the upcoming red traffic light. Continue straight. Stop for the red traffic light. Continue straight.,giovanni,76.8
-14,2021.06.23.15.18.10_veh-26_00165_02848,L,,Take me to the Aria.,grod,156.5
-14,2021.06.23.15.18.10_veh-26_00165_02848,sub,1,Slow down and stop for the upcoming red traffic light. Continue straight. Stop behind the brown bus during the red traffic light. Continue straight. Merge one lane to the right.,giovanni,88.3
-14,2021.06.23.15.18.10_veh-26_00165_02848,sub,2,Look for oncoming vehicles before leaving the drop off zone. Merge one lane to the left side and make a stop for the upcoming intersection with red lights.,giovanni,32.9
-15,2021.06.23.18.23.38_veh-26_01769_01925,L,,Make a right at the Veer Towers into the Aria drop off.,grod,63.8
-15,2021.06.23.18.23.38_veh-26_01769_01925,sub,1,Continue straight. Merge to the right lane. Merge to the right turning lane and then turn right. Follow the white vehicle.,giovanni,67.1
-16,2021.08.17.16.48.45_veh-43_02070_02652,L,,Head towards Tunnel Park.,grod,249.8
-16,2021.08.17.16.48.45_veh-43_02070_02652,sub,1,"In the intersection turn left. Continue straight. Make a stop for the upcoming stop sign, then turn left. Make another stop for another stop sign. In the intersection turn right. Merge to the left turning lane and stop for the upcoming red traffic light. In the intersection make a left turn. Stop for the red traffic light. Turn left in the intersection.",giovanni,162.6
-17,2021.08.17.17.17.01_veh-45_01207_01417,L,,follow the white van in front of you,parthib,48.4
-17,2021.08.17.17.17.01_veh-45_01207_01417,sub,1,At the intersection make a righ turn. After the traffic light merge into the left lane. Merge into the left turning lane and make a stop during the red light.,giovanni,42
-18,2021.08.17.17.17.01_veh-45_02098_02251,L,,Take me to Citgo.,grod,75.4
-18,2021.08.17.17.17.01_veh-45_02098_02251,sub,1,make a right turn at the stopsign. make a right turn at the intersection with the stoplight,parthib,70.6
-18,2021.08.17.17.17.01_veh-45_02098_02251,sub,2,"Make a stop at the stop sign, turn right at the intersection. Stop. Make another stop for the stop sign and continue straight. Stop for the red traffic light.",giovanni,43.2
-19,2021.08.17.18.43.12_veh-43_01023_01358,L,,Drop me off at Tunnel Park.,grod,157
-19,2021.08.17.18.43.12_veh-43_01023_01358,sub,1,"At the upcoming intersection make a left turn. Stop for the upcoming stop sign, continue striaght. At the next stop sign make another stop and continue straight. Yield to oncoming vehicles then turn left.",giovanni,37.8
-19,2021.08.17.18.43.12_veh-43_01023_01358,sub,2,when you get to the stopsign make a right turn and follow the road,parthib,28
-20,2021.08.17.18.44.32_veh-08_00873_01540,L,,Make a left into the backside of Tunnel Park.,grod,215.5
-20,2021.08.17.18.44.32_veh-08_00873_01540,sub,1,make a left turn when the light turns green and when its clear. at the far end of the road when you approach the stopsign to make a right do so. temporarily park at the curb where the white vehicle is leaving. let one car pass before heading back on the road. at the stopsign make a left turn. at the next two intersections you will make a right turn and then left turn respectively.,parthib,175
-20,2021.08.17.18.44.32_veh-08_00873_01540,sub,2,Turn left at the intersection. Make a stop for the upcoming stop sign and make a right turn. Stop for the red traffic light at the upcoming intersection. Wait for the pedestrian and turn left. At the next intersection make a stop for the red traffic light. Merge one lane to the left and make a stop behind the grey vehicle. Turn left.,giovanni,98.8
-21,2021.09.15.13.12.49_veh-39_00135_00467,L,,Take me to Seaport Common.,grod,61.3
-21,2021.09.15.13.12.49_veh-39_00135_00467,sub,1,"Continue straight. Let the construction worker cross the road. Continue straight. Stop behind the maroon vehicle during the red traffic light. Slow down and let the white vehicle pass, before mergeing back into the lane. At the intersection turn right. Merge to the right lane. Let the vehicles merge into the lane . Continue striahgt. Make a stop for the upcoming stop sign.",giovanni,92.7
-21,2021.09.15.13.12.49_veh-39_00135_00467,sub,2,follow the vehicle ahead of you. make the right turn and move into the far right lane and go straight. at the stopsign make a left turn,parthib,83.8
-21,2021.09.15.13.12.49_veh-39_00135_00467,sub,3,Turn right at the intersection. Merge into the middle lane. Stop at the stop sign. Turn left. Merge onto the left lane to avoid the red vehicle. At the next stop sign make a stop. Look for oncoming traffic.,giovanni,73
-22,2021.09.15.13.12.49_veh-39_00135_00467,L,,Go to the institute of contemporary art,Marcus,53.5
-22,2021.09.15.13.12.49_veh-39_00135_00467,sub,1,"Continue straight. Let the construction worker cross the road. Continue straight. Stop behind the maroon vehicle during the red traffic light. Slow down and let the white vehicle pass, before mergeing back into the lane. At the intersection turn right. Merge to the right lane. Let the vehicles merge into the lane . Continue striahgt. Make a stop for the upcoming stop sign.",giovanni,92.7
-22,2021.09.15.13.12.49_veh-39_00135_00467,sub,2,follow the vehicle ahead of you. make the right turn and move into the far right lane and go straight. at the stopsign make a left turn,parthib,83.8
-22,2021.09.15.13.12.49_veh-39_00135_00467,sub,3,Turn right at the intersection. Merge into the middle lane. Stop at the stop sign. Turn left. Merge onto the left lane to avoid the red vehicle. At the next stop sign make a stop. Look for oncoming traffic.,giovanni,73
-23,2021.09.15.13.12.49_veh-39_00135_00467,L,,Turn around at the institute of contemporary art,jeremykemmerer,60
-23,2021.09.15.13.12.49_veh-39_00135_00467,sub,1,"Continue straight. Let the construction worker cross the road. Continue straight. Stop behind the maroon vehicle during the red traffic light. Slow down and let the white vehicle pass, before mergeing back into the lane. At the intersection turn right. Merge to the right lane. Let the vehicles merge into the lane . Continue striahgt. Make a stop for the upcoming stop sign.",giovanni,92.7
-23,2021.09.15.13.12.49_veh-39_00135_00467,sub,2,follow the vehicle ahead of you. make the right turn and move into the far right lane and go straight. at the stopsign make a left turn,parthib,83.8
-23,2021.09.15.13.12.49_veh-39_00135_00467,sub,3,Turn right at the intersection. Merge into the middle lane. Stop at the stop sign. Turn left. Merge onto the left lane to avoid the red vehicle. At the next stop sign make a stop. Look for oncoming traffic.,giovanni,73
-24,2021.09.15.15.02.19_veh-39_01107_01666,L,,Head towards Seaport Common.,grod,126.9
-24,2021.09.15.15.02.19_veh-39_01107_01666,sub,1,Merge one lane to the left. Wait for the vehicle to pass before crossing the intersection. Stop at the red light. At the next traffic light make a stop. Slow down to avoid the black vehicle merging into the left lane.,giovanni,98.2
-25,2021.09.15.16.51.15_veh-28_00005_00160,L,,Make a U-turn.,grod,65.9
-25,2021.09.15.16.51.15_veh-28_00005_00160,sub,1,Make a U-Turn at the end of the road. Make a stop the upcoming stop sign.,giovanni,41.3
-25,2021.09.15.16.51.15_veh-28_00005_00160,sub,2,"when you are close to the parked big-size car thats facing you, make a u-turn and just follow the road forward",parthib,60.4
-25,2021.09.15.16.51.15_veh-28_00005_00160,sub,3,Make a U-Turn by the parking lot. Stop for the upcoming stop sign. At the next stop sign make another stop .,giovanni,57.9
-26,2021.09.15.16.51.15_veh-28_00005_00160,L,,do a u turn.,Isaiah Ramirez,69.9
-26,2021.09.15.16.51.15_veh-28_00005_00160,sub,1,Make a U-Turn at the end of the road. Make a stop the upcoming stop sign.,giovanni,41.3
-26,2021.09.15.16.51.15_veh-28_00005_00160,sub,2,"when you are close to the parked big-size car thats facing you, make a u-turn and just follow the road forward",parthib,60.4
-26,2021.09.15.16.51.15_veh-28_00005_00160,sub,3,Make a U-Turn by the parking lot. Stop for the upcoming stop sign. At the next stop sign make another stop .,giovanni,57.9
-27,2021.10.06.14.31.13_veh-28_00738_00908,L,,Head towards Flaherty Park,grod,27
-27,2021.10.06.14.31.13_veh-28_00738_00908,sub,1,"Stop at the red traffic light, then proceed once it turns green and continue forward. Take a slight left to avoid hitting the van, then return to the original lane and proceed. Take another slight left to avoid the construction site.",giovanni,47.1
-28,2021.10.11.05.34.05_veh-50_00697_00766,L,,Drop me off at the last building.,grod,24.5
-28,2021.10.11.05.34.05_veh-50_00697_00766,sub,1,Merge to the right lane to avoid the vehicles. Merge back to the left lane. Enter the building and turn left.,giovanni,26.6
-29,2021.10.11.07.12.18_veh-50_00345_00498,L,,Pull up in front of this preschool.,grod,46.6
-29,2021.10.11.07.12.18_veh-50_00345_00498,sub,1,make a right turn at the stoplight toward the preschool. enter in the entrance of the building on the left and head back the opposite direction. at the stopsign make a right turn and go straight,parthib,74.6
-30,2021.06.14.17.26.26_veh-38_04544_04920,L,,Head toward the Luxor.,grod,178.2
-30,2021.06.14.17.26.26_veh-38_04544_04920,sub,1,Turn left. Prepare to stop behind a vehicle at a red light. Procced. Follow the white vehicle and prepare to stop at the upcoming red light.,giovanni,56.5
-30,2021.06.14.17.26.26_veh-38_04544_04920,sub,2,Merge one lane to the right side. Merge to the right lane. Merge to the right turning lane and make a stop at the red traffic light.,giovanni,94.6
+1,2021.06.14.19.22.11_veh-38_01480_01860,L,,head toward paris las vegas entrance,parthib,163
+1,2021.06.14.19.22.11_veh-38_01480_01860,sub,1,keep straight. move to the right one lane. follow the white car until it turns right. keep straight. turn left where the diamond sign is.,Jeevan,171.2
+2,2021.07.16.01.22.41_veh-14_04315_07102,L,,head toward luxor las vegas,parthib,112.9
+2,2021.07.16.01.22.41_veh-14_04315_07102,sub,1,head toward the exit and be in the far left turning lane at the stoplight. when the light turns green make a left turn. when you pass the next stoplight switch to teh right lane. do the same after passing the next stoplight. make the right turn at the intersection before luxor las vegas.,parthib,254.1
+3,2021.08.17.14.45.12_veh-42_00092_00301,L,,head toward tunnel park,parthib,78.1
+3,2021.08.17.14.45.12_veh-42_00092_00301,sub,1,"Merge onto the left turning lane, stop at the intersection during the red light. Make a left turn. Stop for another intersection and make a left turn. Turn right at the intersection ahead.",giovanni,88.4
+4,2021.06.14.13.28.41_veh-12_05118_05258,L,,stop at the entrance of luxor las vegas,parthib,28.6
+4,2021.06.14.13.28.41_veh-12_05118_05258,sub,1,Yield to oncoming vehicles and then turn left. Enter the buildings drop off zone and stop. Leave the drop off zone.,giovanni,50.7
+5,2021.06.23.15.56.12_veh-16_01308_04289,L,,head toward the eifel tower,parthib,164.3
+5,2021.06.23.15.56.12_veh-16_01308_04289,sub,1,go toward the exit into the middle turning lane. make the left turn when the light is green and go forward,parthib,149.3
+6,2021.07.16.18.06.21_veh-38_01526_02150,L,,Take me to the Luxor.,grod,49.4
+6,2021.07.16.18.06.21_veh-38_01526_02150,sub,1,Get in your left lane then merge to the left lane again. Go past this stop sign and at the next intersection turn left. Pull up to the front of of this hotel.,grod,49.4
+7,2021.07.16.23.22.27_veh-14_01631_03833,L,,Drop me off at the Wynn.,grod,231.3
+7,2021.07.16.23.22.27_veh-14_01631_03833,sub,1,"Head straight until you pass the light next to the Palazzo, then get in your right turn lane, turn left at the next light, and stop in front of the hotel entrance.",grod,231.3
+8,2021.07.16.18.19.22_veh-35_00440_00858,L,,Take me to Paris Las Vegas.,grod,177.9
+8,2021.07.16.18.19.22_veh-35_00440_00858,sub,1,"Head straight in this lane until right before you reach the intersection next to the Arte Museum Las Vegas, then merge one lane to the right. Continue past the intersection, turn right at the second light, and stop in front of the hotel entrance.",grod,177.9
+9,2021.07.16.18.19.22_veh-35_00869_03454,L,,Go to the Luxor.,grod,198.1
+9,2021.07.16.18.19.22_veh-35_00869_03454,sub,1,"Turn left at this light, merge three lanes to the right when it is safe, then when you pass the Statue of Liberty merge one lane to the right and get in your right turn lane. Make a right at this next light and get into your left lane. Go past the stop sign, make a left at the next intersection and stop in front of the hotel doors. Continue straight and exit to the right of the stop sign.",grod,198.1
+10,2021.07.16.18.19.22_veh-35_00869_03454,L,,Make a drop off at the Luxor.,grod,198.1
+10,2021.07.16.18.19.22_veh-35_00869_03454,sub,1,"Turn left at this light, merge three lanes to the right when it is safe, then when you pass the Statue of Liberty merge one lane to the right and get in your right turn lane. Make a right at this next light and get into your left lane. Go past the stop sign, make a left at the next intersection and stop in front of the hotel doors. Continue straight and exit to the right of the stop sign.",grod,198.1
+11,2021.07.16.23.22.27_veh-14_03844_04474,L,,Drop me off at the Wynn.,grod,165.8
+11,2021.07.16.23.22.27_veh-14_03844_04474,sub,1,"Continue straight past this light then get in your right lane. At the next light make a right turn, then stop and wait in front of the hotel entrance.",grod,165.8
+12,2021.07.16.23.22.27_veh-14_03844_04474,L,,Pick up my friend at the Wynn.,grod,165.8
+12,2021.07.16.23.22.27_veh-14_03844_04474,sub,1,"Continue straight past this light then get in your right lane. At the next light make a right turn, then stop and wait in front of the hotel entrance.",grod,165.8
+13,2021.06.14.18.42.45_veh-12_01065_01152,L,,Take me to the Luxor.,grod,27.9
+13,2021.06.14.18.42.45_veh-12_01065_01152,sub,1,make a left turn and temporarily stop at the center of the entrance,parthib,35.2
+13,2021.06.14.18.42.45_veh-12_01065_01152,sub,2,Yield to the oncoming vehicles and turn left into the building. Enter the drop off zone and stop.,giovanni,26.8
+14,2021.06.14.18.42.45_veh-12_01065_01152,L,,Pull into the Luxor.,grod,33
+14,2021.06.14.18.42.45_veh-12_01065_01152,sub,1,make a left turn and temporarily stop at the center of the entrance,parthib,35.2
+14,2021.06.14.18.42.45_veh-12_01065_01152,sub,2,Yield to the oncoming vehicles and turn left into the building. Enter the drop off zone and stop.,giovanni,26.8
+15,2021.06.14.18.42.45_veh-12_01680_01744,L,,Pull into Paris Las Vegas.,grod,29
+15,2021.06.14.18.42.45_veh-12_01680_01744,sub,1,"make the same right turn as the black car in front of you, then go into the roundabout toward the exit",parthib,29.9
+16,2021.06.14.18.42.45_veh-12_01680_01744,L,,Drop me off in front of Paris Hotel.,grod,25.2
+16,2021.06.14.18.42.45_veh-12_01680_01744,sub,1,"make the same right turn as the black car in front of you, then go into the roundabout toward the exit",parthib,29.9
+17,2021.06.14.18.42.45_veh-12_03445_03902,L,,Take me to the Paris Hotel.,grod,82.5
+17,2021.06.14.18.42.45_veh-12_03445_03902,sub,1,switch into the right lane after passing three stoplights. make the right turn into paris las vegas and go around the roundabout/. you will make a left turn when the light turns green,parthib,209.1
+17,2021.06.14.18.42.45_veh-12_03445_03902,sub,2,Merge one lane to the right. Follow the white truck. At the next crosswalk turn right. Enter the diamond services and stop at a drop off zone. Look for oncoming vehicles before leaving the drop off zone. Stop at the red traffic light.,giovanni,140.8
+17,2021.06.14.18.42.45_veh-12_03445_03902,sub,3,"keep straight. before the light, turn right on that street. take a left at the diamond center sign. stop behind the car with the guy at the door. turn to the lane on the left and continue straight.",Jeevan,47.6
+17,2021.06.14.18.42.45_veh-12_03445_03902,sub,4,Follow the white truck. Turn right at the crosswalk. Enter the diamond seven star drop off zone and come to a stop. Look for oncoming vehicles and leave the drop off zone. Make a stop for the upcoming red traffic light.,giovanni,85.3
+18,2021.06.23.14.54.32_veh-16_00421_00625,L,,Drive toward the Veer towers straight ahead.,grod,70.5
+18,2021.06.23.14.54.32_veh-16_00421_00625,sub,1,Stop for the upcoming red traffic light. Continue straight. Stop for the red traffic light. Continue straight.,giovanni,76.8
+19,2021.06.23.15.18.10_veh-26_00165_02848,L,,Take me to the Aria.,grod,156.5
+19,2021.06.23.15.18.10_veh-26_00165_02848,sub,1,Slow down and stop for the upcoming red traffic light. Continue straight. Stop behind the brown bus during the red traffic light. Continue straight. Merge one lane to the right.,giovanni,88.3
+19,2021.06.23.15.18.10_veh-26_00165_02848,sub,2,Look for oncoming vehicles before leaving the drop off zone. Merge one lane to the left side and make a stop for the upcoming intersection with red lights.,giovanni,32.9
+20,2021.06.23.18.23.38_veh-26_01769_01925,L,,Make a right at the Veer Towers into the Aria drop off.,grod,63.8
+20,2021.06.23.18.23.38_veh-26_01769_01925,sub,1,Continue straight. Merge to the right lane. Merge to the right turning lane and then turn right. Follow the white vehicle.,giovanni,67.1
+21,2021.08.17.16.48.45_veh-43_02070_02652,L,,Head towards Tunnel Park.,grod,249.8
+21,2021.08.17.16.48.45_veh-43_02070_02652,sub,1,"In the intersection turn left. Continue straight. Make a stop for the upcoming stop sign, then turn left. Make another stop for another stop sign. In the intersection turn right. Merge to the left turning lane and stop for the upcoming red traffic light. In the intersection make a left turn. Stop for the red traffic light. Turn left in the intersection.",giovanni,162.6
+22,2021.08.17.17.17.01_veh-45_01207_01417,L,,follow the white van in front of you,parthib,48.4
+22,2021.08.17.17.17.01_veh-45_01207_01417,sub,1,At the intersection make a righ turn. After the traffic light merge into the left lane. Merge into the left turning lane and make a stop during the red light.,giovanni,42
+23,2021.08.17.17.17.01_veh-45_02098_02251,L,,Take me to Citgo.,grod,75.4
+23,2021.08.17.17.17.01_veh-45_02098_02251,sub,1,make a right turn at the stopsign. make a right turn at the intersection with the stoplight,parthib,70.6
+23,2021.08.17.17.17.01_veh-45_02098_02251,sub,2,"Make a stop at the stop sign, turn right at the intersection. Stop. Make another stop for the stop sign and continue straight. Stop for the red traffic light.",giovanni,43.2
+24,2021.08.17.18.43.12_veh-43_01023_01358,L,,Drop me off at Tunnel Park.,grod,157
+24,2021.08.17.18.43.12_veh-43_01023_01358,sub,1,"At the upcoming intersection make a left turn. Stop for the upcoming stop sign, continue striaght. At the next stop sign make another stop and continue straight. Yield to oncoming vehicles then turn left.",giovanni,37.8
+24,2021.08.17.18.43.12_veh-43_01023_01358,sub,2,when you get to the stopsign make a right turn and follow the road,parthib,28
+25,2021.08.17.18.44.32_veh-08_00873_01540,L,,Make a left into the backside of Tunnel Park.,grod,215.5
+25,2021.08.17.18.44.32_veh-08_00873_01540,sub,1,make a left turn when the light turns green and when its clear. at the far end of the road when you approach the stopsign to make a right do so. temporarily park at the curb where the white vehicle is leaving. let one car pass before heading back on the road. at the stopsign make a left turn. at the next two intersections you will make a right turn and then left turn respectively.,parthib,175
+25,2021.08.17.18.44.32_veh-08_00873_01540,sub,2,Turn left at the intersection. Make a stop for the upcoming stop sign and make a right turn. Stop for the red traffic light at the upcoming intersection. Wait for the pedestrian and turn left. At the next intersection make a stop for the red traffic light. Merge one lane to the left and make a stop behind the grey vehicle. Turn left.,giovanni,98.8
+26,2021.09.15.13.12.49_veh-39_00135_00467,L,,Take me to Seaport Common.,grod,61.3
+26,2021.09.15.13.12.49_veh-39_00135_00467,sub,1,"Continue straight. Let the construction worker cross the road. Continue straight. Stop behind the maroon vehicle during the red traffic light. Slow down and let the white vehicle pass, before mergeing back into the lane. At the intersection turn right. Merge to the right lane. Let the vehicles merge into the lane . Continue striahgt. Make a stop for the upcoming stop sign.",giovanni,92.7
+26,2021.09.15.13.12.49_veh-39_00135_00467,sub,2,follow the vehicle ahead of you. make the right turn and move into the far right lane and go straight. at the stopsign make a left turn,parthib,83.8
+26,2021.09.15.13.12.49_veh-39_00135_00467,sub,3,Turn right at the intersection. Merge into the middle lane. Stop at the stop sign. Turn left. Merge onto the left lane to avoid the red vehicle. At the next stop sign make a stop. Look for oncoming traffic.,giovanni,73
+27,2021.09.15.13.12.49_veh-39_00135_00467,L,,Go to the institute of contemporary art,Marcus,53.5
+27,2021.09.15.13.12.49_veh-39_00135_00467,sub,1,"Continue straight. Let the construction worker cross the road. Continue straight. Stop behind the maroon vehicle during the red traffic light. Slow down and let the white vehicle pass, before mergeing back into the lane. At the intersection turn right. Merge to the right lane. Let the vehicles merge into the lane . Continue striahgt. Make a stop for the upcoming stop sign.",giovanni,92.7
+27,2021.09.15.13.12.49_veh-39_00135_00467,sub,2,follow the vehicle ahead of you. make the right turn and move into the far right lane and go straight. at the stopsign make a left turn,parthib,83.8
+27,2021.09.15.13.12.49_veh-39_00135_00467,sub,3,Turn right at the intersection. Merge into the middle lane. Stop at the stop sign. Turn left. Merge onto the left lane to avoid the red vehicle. At the next stop sign make a stop. Look for oncoming traffic.,giovanni,73
+28,2021.09.15.13.12.49_veh-39_00135_00467,L,,Turn around at the institute of contemporary art,jeremykemmerer,60
+28,2021.09.15.13.12.49_veh-39_00135_00467,sub,1,"Continue straight. Let the construction worker cross the road. Continue straight. Stop behind the maroon vehicle during the red traffic light. Slow down and let the white vehicle pass, before mergeing back into the lane. At the intersection turn right. Merge to the right lane. Let the vehicles merge into the lane . Continue striahgt. Make a stop for the upcoming stop sign.",giovanni,92.7
+28,2021.09.15.13.12.49_veh-39_00135_00467,sub,2,follow the vehicle ahead of you. make the right turn and move into the far right lane and go straight. at the stopsign make a left turn,parthib,83.8
+28,2021.09.15.13.12.49_veh-39_00135_00467,sub,3,Turn right at the intersection. Merge into the middle lane. Stop at the stop sign. Turn left. Merge onto the left lane to avoid the red vehicle. At the next stop sign make a stop. Look for oncoming traffic.,giovanni,73
+29,2021.09.15.15.02.19_veh-39_01107_01666,L,,Head towards Seaport Common.,grod,126.9
+29,2021.09.15.15.02.19_veh-39_01107_01666,sub,1,Merge one lane to the left. Wait for the vehicle to pass before crossing the intersection. Stop at the red light. At the next traffic light make a stop. Slow down to avoid the black vehicle merging into the left lane.,giovanni,98.2
+30,2021.09.15.16.51.15_veh-28_00005_00160,L,,Make a U-turn.,grod,65.9
+30,2021.09.15.16.51.15_veh-28_00005_00160,sub,1,Make a U-Turn at the end of the road. Make a stop the upcoming stop sign.,giovanni,41.3
+30,2021.09.15.16.51.15_veh-28_00005_00160,sub,2,"when you are close to the parked big-size car thats facing you, make a u-turn and just follow the road forward",parthib,60.4
+30,2021.09.15.16.51.15_veh-28_00005_00160,sub,3,Make a U-Turn by the parking lot. Stop for the upcoming stop sign. At the next stop sign make another stop .,giovanni,57.9
+31,2021.09.15.16.51.15_veh-28_00005_00160,L,,do a u turn.,Isaiah Ramirez,69.9
+31,2021.09.15.16.51.15_veh-28_00005_00160,sub,1,Make a U-Turn at the end of the road. Make a stop the upcoming stop sign.,giovanni,41.3
+31,2021.09.15.16.51.15_veh-28_00005_00160,sub,2,"when you are close to the parked big-size car thats facing you, make a u-turn and just follow the road forward",parthib,60.4
+31,2021.09.15.16.51.15_veh-28_00005_00160,sub,3,Make a U-Turn by the parking lot. Stop for the upcoming stop sign. At the next stop sign make another stop .,giovanni,57.9
+32,2021.10.06.14.31.13_veh-28_00738_00908,L,,Head towards Flaherty Park,grod,27
+32,2021.10.06.14.31.13_veh-28_00738_00908,sub,1,"Stop at the red traffic light, then proceed once it turns green and continue forward. Take a slight left to avoid hitting the van, then return to the original lane and proceed. Take another slight left to avoid the construction site.",giovanni,47.1
+33,2021.10.11.05.34.05_veh-50_00697_00766,L,,Drop me off at the last building.,grod,24.5
+33,2021.10.11.05.34.05_veh-50_00697_00766,sub,1,Merge to the right lane to avoid the vehicles. Merge back to the left lane. Enter the building and turn left.,giovanni,26.6
+34,2021.10.11.07.12.18_veh-50_00345_00498,L,,Pull up in front of this preschool.,grod,46.6
+34,2021.10.11.07.12.18_veh-50_00345_00498,sub,1,make a right turn at the stoplight toward the preschool. enter in the entrance of the building on the left and head back the opposite direction. at the stopsign make a right turn and go straight,parthib,74.6
+35,2021.06.14.17.26.26_veh-38_04544_04920,L,,Head toward the Luxor.,grod,178.2
+35,2021.06.14.17.26.26_veh-38_04544_04920,sub,1,Turn left. Prepare to stop behind a vehicle at a red light. Procced. Follow the white vehicle and prepare to stop at the upcoming red light.,giovanni,56.5
+35,2021.06.14.17.26.26_veh-38_04544_04920,sub,2,Merge one lane to the right side. Merge to the right lane. Merge to the right turning lane and make a stop at the red traffic light.,giovanni,94.6
