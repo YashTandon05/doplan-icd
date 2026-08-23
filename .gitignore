@@ -9,6 +9,7 @@ data/clip_frames/
 *.safetensors
 *.pt
 *.pth
+qwen_model/
 
 # ---- Python ----
 __pycache__/
