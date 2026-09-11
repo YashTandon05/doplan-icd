@@ -1,0 +1,84 @@
+# =============================================================================
+# settings.txt -- personal, per-machine settings for the doPlan ICD pipeline.
+# =============================================================================
+# Copy this file to "settings.txt" (same folder) and fill in YOUR paths.
+
+# =============================================================================
+# SETTINGS TO PLAY WITH
+# =============================================================================
+
+#   1. MAX_FRAMES              -- How much of the video the model sees. Raise
+#                                  this first if predictions seem to be missing
+#                                  things that happen in the clip.
+#   2. USE_GPS_CONTEXT         -- Turn on if predictions get turns wrong or
+#                                  invent things (a ramp, an extra turn) that
+#                                  aren't there. Cheap, usually worth trying.
+#   3. DECOMPOSITION_PROMPT    -- The actual prompt sent to the qwen model
+#                                   telling it to decompose this instruction
+#   4. MODEL_SIZE / MODEL_NAME -- switch between 3B (fast, weaker) and
+#                                  7B (slow, stronger) to compare quality.
+#   5. TWO_STAGE_GROUNDING     -- Turn on if USE_GPS_CONTEXT alone isn't
+#                                  enough (for experimenting). Slower (~2x)
+#   6. FEW_SHOT_PAIR_IDS       -- Comma-separated pair_ids to show the model
+#                                  a proper decomposition as an example.
+#   7. LOAD_IN_4BIT            -- Shrinks the model to fit smaller GPUs, small
+#                                  quality cost. Turn on if you're running out of VRAM.
+#   8. MIN_PIXELS / MAX_PIXELS -- only touch these if you're chasing a
+#                                  VRAM error and MAX_FRAMES alone didn't fix it.
+
+# --- Required------------------------------------------------------------------
+CSV_PATH = "C:/path/to/doplan-icd/data/icd_pairs.csv"
+VIDEO_PATH = "C:/path/to/video_folder, C:/path/to/another/video_folder"
+# Example:  "C:/path/to/las_vegas_8/las_vegas_8, C:/path/to/pittsburgh_1/pittsburgh_1"
+
+FPS = 10.0
+# ------------------------------------------------------------------------------
+
+MAX_FRAMES = 64
+
+USE_GPS_CONTEXT = "false"
+
+MODEL_SIZE = "7B"
+# MODEL_SIZE = "3B"
+
+TWO_STAGE_GROUNDING = "false"
+
+FEW_SHOT_PAIR_IDS = ""
+
+LOAD_IN_4BIT = "false"
+
+# --- Prompt text ---------------------------------------------------------------
+# If you want to play with the prompting do it here, otherwise it will use the default prompts.
+
+# CAUTION: DECOMPOSITION_PROMPT must keep the literal text "{instruction}"
+# somewhere in it -- that's replaced with the real instruction at runtime.
+# Removing it, or adding any OTHER single { or } character, will crash
+# the run.
+# Also: this is one line in this file, so any newline inside the
+# prompt has to be written as the two characters \ and n, not an actual
+# line break -- they're converted back to real newlines automatically.
+# Use the default prompts in config.py as an example
+
+# DECOMPOSITION_PROMPT = "Instruction: {instruction}\nBreak this down into steps..."
+# SCENE_DESCRIPTION_PROMPT = "Describe only what is visible in this video..."
+
+
+MIN_PIXELS = 50176
+MAX_PIXELS = 200704
+TOTAL_PIXEL_BUDGET = 3211264
+
+# Skips MODEL_SIZE and loads from this exact path/repo instead.
+# Useful once you've downloaded a model locally (faster, works offline).
+# MODEL_NAME = C:\doplan-icd\scripts\qwen\qwen_model
+
+# How long the model's answer can be. If output looks cut off mid-
+# sentence, raise this
+MAX_NEW_TOKENS = 256
+
+# Hugging Face token, only needed to avoid rate limits on first model
+# download. Get one at https://huggingface.co/settings/tokens
+# HF_TOKEN = "hf_..."
+DOWNLOAD_TIMEOUT = 60
+
+# Where decompose_and_run.py writes results and review.py reads them from.
+RESULTS_FILE = "decomposition_results.json"

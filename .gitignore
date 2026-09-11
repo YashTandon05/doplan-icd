@@ -1,9 +1,13 @@
+scripts/settings.txt
+decomposition_results.json
+
 # Videos
 *.mp4
 data/videos/
 data/clip_frames/
 
 # Model files
+qwen_model/
 *.gguf
 *.bin
 *.safetensors
