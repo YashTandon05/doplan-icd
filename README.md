@@ -70,6 +70,7 @@ VIDEO_PATH = "C:/path/to/las_vegas_8/las_vegas_8, C:/path/to/pittsburgh_1/pittsb
 ## Running prompting
 
 ```
+cd scripts/qwen
 python prompts.py --limit 2   # smoke test
 python prompts.py             # full run
 ```
