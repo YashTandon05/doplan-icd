@@ -94,3 +94,11 @@ If you're not in that folder, you can use the full path instead:
 python scripts\qwen\prompts.py --limit 2
 python scripts\qwen\review.py 9
 ```
+## Quick Evaluation
+Make sure you're still in scripts/qwen
+```
+    python evaluate.py                        # score the default RESULTS_FILE
+    python evaluate.py --results other.json   # evaluate different json results file
+    python evaluate.py --out scores.csv       # write a per-sample CSV
+```
+
