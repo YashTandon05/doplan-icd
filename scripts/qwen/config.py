@@ -16,6 +16,7 @@ How settings flow together:
 
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -45,7 +46,7 @@ DEFAULT_DECOMPOSITION_PROMPT = (
     "talking to staff, waiting for a passenger).\n"
     "If the instruction has no clear arrival point "
     "(e.g. following another vehicle, with nowhere specific to stop), "
-    "describe the next maneuvers you actually observe in the "
+    "describe only the next few maneuvers you actually observe in the "
     "video -- do NOT repeat the same or similar maneuvers in a loop to "
     "fill space.\n"
     "Format: a plain numbered list, one short sentence per line. Do not "
@@ -281,11 +282,14 @@ def load_config(settings_file: Path | None = None) -> Config:
         raise ValueError(f"Missing required setting(s) {missing} in {settings_file}")
 
     kwargs: dict = {
-        "csv_path": Path(raw["CSV_PATH"]),
+        # .expanduser() so "~/data/..." works, not just a literal full
+        # path -- convenient on HPC clusters where the real path under
+        # $HOME can be long, and typo-prone to spell out every time.
+        "csv_path": Path(raw["CSV_PATH"]).expanduser(),
         # Comma-separated list of one or more roots, e.g.
         # "D:/vegas_8,D:/boston" -> (Path("D:/vegas_8"), Path("D:/boston")).
         # A single path with no comma still works exactly as before.
-        "video_paths": tuple(Path(p.strip()) for p in raw["VIDEO_PATH"].split(",") if p.strip()),
+        "video_paths": tuple(Path(p.strip()).expanduser() for p in raw["VIDEO_PATH"].split(",") if p.strip()),
         "fps": float(raw["FPS"]),
     }
 
@@ -310,7 +314,14 @@ def load_config(settings_file: Path | None = None) -> Config:
             # break -- unescape that back into real newlines here.
             value = value.replace("\\n", "\n")
         elif field_name == "results_file":
-            value = Path(value)
+            value = Path(value).expanduser()
+        elif field_name == "model_name":
+            # model_name stays a bare string (it's passed straight to
+            # from_pretrained(), which accepts either a repo id or a
+            # local path) -- but still needs manual expanduser, since
+            # nothing downstream does this automatically for a plain str,
+            # unlike a Path.
+            value = os.path.expanduser(value)
         kwargs[field_name] = value
 
     # Anchor results_file to this tool's own folder (scripts/qwen)
