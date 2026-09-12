@@ -24,6 +24,11 @@ python -m venv .venv
 ```
 nvidia-smi
 ```
+> **On a HPC cluster:** login nodes may have no GPU at all, so
+> `nvidia-smi` here might be empty or misleading. Check your cluster's
+> module system (e.g. `module avail cuda`) or docs, or run this from
+> inside an interactive GPU session instead.
+
 Note the "CUDA Version" shown top-right, then install the matching build
 (swap `cu126` below for whatever matches — see
 [pytorch.org/get-started](https://pytorch.org/get-started/locally/) for the
@@ -42,7 +47,18 @@ This must print `True` and your GPU's name.
 pip install -r requirements.txt
 ```
 
-**4. Get the model weights**
+**4. Configure your paths**
+```
+cp settings.example.txt settings.txt
+```
+Edit `settings.txt` at the **project root**: set `CSV_PATH` and
+`VIDEO_PATH` to your data. Add more video paths as needed. 
+```
+CSV_PATH = "C:/path/to/doplan-icd/data/icd_pairs.csv"
+VIDEO_PATH = "C:/path/to/las_vegas_8/las_vegas_8, C:/path/to/pittsburgh_1/pittsburgh_1"
+```
+
+**5. Get the model weights**
 
 Either let the script auto-download on first run (slower, needs internet
 every time unless cached), or pre-download for faster/offline loading:
@@ -50,27 +66,30 @@ every time unless cached), or pre-download for faster/offline loading:
 hf download Qwen/Qwen2.5-VL-3B-Instruct --local-dir ./qwen_model_3b
 hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir ./qwen_model_7b
 ```
-If you pre-download, point `MODEL_NAME` in `settings.txt` at those folders
+If you pre-download, point `MODEL_NAME` in the `settings.txt` you just
+created at those folders — otherwise `MODEL_SIZE` (already set to a
+sensible default) picks between the two automatically:
 ```
 MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_7b"
 ```
 
-**5. Configure your paths**
-```
-cp settings.example.txt settings.txt
-```
-Edit `settings.txt` at the **project root**: set `CSV_PATH` and
-`VIDEO_PATH` to your data, and `MODEL_SIZE` (or `MODEL_NAME` directly) to
-your model. Add more video paths as needed. 
-```
-CSV_PATH = "C:/path/to/doplan-icd/data/icd_pairs.csv"
-VIDEO_PATH = "C:/path/to/las_vegas_8/las_vegas_8, C:/path/to/pittsburgh_1/pittsburgh_1"
-```
+> **On a HPC cluster, do this instead of the above:** if compute nodes
+> can't reach the internet, letting `MODEL_SIZE` auto-download inside a
+> batch job will likely just time out. Pre-download on a login node,
+> while you still have internet:
+> ```
+> hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir /scratch/$USER/qwen_model_7b
+> ```
+> Then add this to the `settings.txt` you already created in step 4:
+> ```
+> MODEL_NAME = "/scratch/$USER/qwen_model_7b"
+> ```
+> Multiple GPUs in one job are used automatically if you request them —
+> only relevant once you move to a model too large for a single GPU.
 
 ## Running prompting
 
 ```
-cd scripts/qwen
 python prompts.py --limit 2   # smoke test
 python prompts.py             # full run
 ```
@@ -85,20 +104,12 @@ tells you which `settings.txt` value to change.
 the same `RESULTS_FILE`. Run this from inside `scripts/qwen` :
 ```
 cd scripts/qwen
-python review.py            # no pair_id -> lists every available pair_id
-python review.py 9          # prints instruction/prediction/ground truth, opens the video + GPS map
+python review.py       # no pair_id -> lists every available pair_id
+python review.py 9     # prints instruction/prediction/ground truth, opens the video + GPS map
 ```
 
 If you're not in that folder, you can use the full path instead:
 ```
-python scripts\qwen\prompts.py --limit 2
-python scripts\qwen\review.py 9
+python scripts/qwen/prompts.py --limit 2
+python scripts/qwen/review.py 9
 ```
-## Quick Evaluation
-Make sure you're still in scripts/qwen
-```
-    python evaluate.py                        # score the default RESULTS_FILE
-    python evaluate.py --results other.json   # evaluate different json results file
-    python evaluate.py --out scores.csv       # write a per-sample CSV
-```
-
