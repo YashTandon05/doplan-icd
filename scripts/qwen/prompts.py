@@ -53,6 +53,10 @@ def _check_cuda_available() -> None:
         "  3) pip install torch --index-url https://download.pytorch.org/whl/cu126\n"
         "     (swap cu126 for the build matching your driver, see pytorch.org)\n"
         "  4) Verify: python -c \"import torch; print(torch.cuda.is_available())\"\n"
+        "On a shared HPC cluster: make sure you're running this from an "
+        "allocated GPU job or interactive session, not a login node -- login "
+        "nodes might have no GPU at all, which looks identical to a bad "
+        "torch install from here.\n"
     )
     sys.exit(1)
 
@@ -210,27 +214,66 @@ class Decomposer:
         logger.info("Loading %s (4bit=%s, attn_implementation=%s)...",
                     model_name, self.config.load_in_4bit, attn_impl)
 
+        # device_map="auto" pre-estimates memory *before* quantization
+        # shrinks the model, so on a SINGLE GPU it can wrongly decide to
+        # offload some layers to CPU/disk -- which bitsandbytes 4-bit
+        # then refuses outright. Force everything onto GPU 0 in that
+        # case, since the whole point of 4-bit is that it should fit.
+        # With MULTIPLE GPUs visible (e.g. a multi-GPU HPC allocation for
+        # a larger model like 72B), that single-GPU workaround would
+        # actively prevent using the extra GPUs at all -- "auto" is what
+        # actually shards the model across them, and is safe there since
+        # the aggregate VRAM across several GPUs is much less likely to
+        # be exceeded by auto's conservative pre-quantization estimate.
+        # Use the explicit "cuda:0" string, not a bare int 0, in the
+        # single-GPU case -- some transformers/accelerate versions
+        # mishandle int device ids here and raise a spurious "no
+        # accelerator" error that has nothing to do with your actual GPU.
+        num_gpus = torch.cuda.device_count()
+        if self.config.load_in_4bit and num_gpus <= 1:
+            device_map = {"": "cuda:0"}
+        else:
+            device_map = "auto"
+        if num_gpus > 1:
+            logger.info("%d GPUs visible -- using device_map='auto' to shard across them.", num_gpus)
+
         try:
             model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
                 model_name,
                 torch_dtype=torch.bfloat16 if use_bf16 else torch.float16,
                 attn_implementation=attn_impl,
-                # device_map="auto" pre-estimates memory *before*
-                # quantization shrinks the model, so it can wrongly decide
-                # to offload some layers to CPU/disk -- which bitsandbytes
-                # 4-bit then refuses outright (it doesn't support split
-                # CPU/disk placement without extra opt-in flags). Force
-                # everything onto GPU 0 once we know we're quantizing,
-                # since the whole point of 4-bit is that it should fit.
-                # Use the explicit "cuda:0" string, not a bare int 0 --
-                # some transformers/accelerate versions mishandle int
-                # device ids here and raise a spurious "no accelerator"
-                # error that has nothing to do with your actual GPU.
-                device_map={"": "cuda:0"} if self.config.load_in_4bit else "auto",
+                device_map=device_map,
                 quantization_config=quantization_config,
             )
-        except Exception:
-            logger.exception("Failed to load %s.", model_name)
+        except Exception as e:
+            error_str = str(e)
+            if any(s in error_str for s in ("No space left on device", "Disk quota exceeded", "Errno 122", "Errno 28")):
+                logger.error(
+                    "Failed to load %s -- this looks like a disk quota / out-of-space "
+                    "error while downloading model weights. If you're on a shared HPC "
+                    "cluster, your home directory is likely too small for these weights "
+                    "(huggingface_hub caches there by default). Fix: pre-download onto "
+                    "scratch/project storage instead, then point MODEL_NAME at that "
+                    "folder in settings.txt (see README's HPC section):\n"
+                    "  hf download %s --local-dir /scratch/$USER/qwen_model\n"
+                    '  MODEL_NAME = "/scratch/$USER/qwen_model"',
+                    model_name, model_name,
+                )
+            elif any(s in error_str for s in ("Connection", "timed out", "ConnectTimeout", "Max retries exceeded")):
+                logger.error(
+                    "Failed to load %s -- this looks like a network/connection failure "
+                    "while trying to download model weights. If you're running this "
+                    "inside a SLURM/batch job on a compute node, this is expected -- "
+                    "compute nodes usually can't reach the internet. Fix: pre-download "
+                    "the model on a LOGIN node first (see README's HPC section), then "
+                    "point MODEL_NAME at that local folder so this run never needs to "
+                    "download anything:\n"
+                    "  hf download %s --local-dir /scratch/$USER/qwen_model\n"
+                    '  MODEL_NAME = "/scratch/$USER/qwen_model"',
+                    model_name, model_name,
+                )
+            else:
+                logger.exception("Failed to load %s.", model_name)
             raise
 
         return model

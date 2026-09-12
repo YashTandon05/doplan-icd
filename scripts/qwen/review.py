@@ -21,8 +21,25 @@ from config import load_config
 from gps_utils import build_gps_context_text
 
 
+def _is_headless() -> bool:
+    """
+    Detects a headless environment (no display) -- e.g. an HPC login or
+    compute node.
+    """
+    if platform.system() in ("Windows", "Darwin"):
+        return False
+    return not (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY"))
+
+
 def open_video(path: str) -> None:
-    """Opens a video in the OS default player -- no extra dependencies needed."""
+    """
+    Opens a video in the OS default player. On a headless machine (no
+    display -- e.g. an HPC node), this just prints the path.
+    """
+    if _is_headless():
+        print(f"  (no display detected -- skipping auto-open; video is at {path})")
+        return
+
     system = platform.system()
     if system == "Windows":
         os.startfile(path)  # type: ignore[attr-defined]
@@ -80,6 +97,8 @@ def main() -> None:
     video_path = match.get("video_path")
 
     # Shows exactly what the model receives when USE_GPS_CONTEXT is on --
+    # there's only one GPS mode (raw coordinates), so this always matches
+    # production behavior.
     if video_path:
         gps_csv_path = Path(video_path).parent / "gps.csv"
         if gps_csv_path.exists():
