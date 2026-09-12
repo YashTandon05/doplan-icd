@@ -78,11 +78,11 @@ MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_7b"
 > batch job will likely just time out. Pre-download on a login node,
 > while you still have internet:
 > ```
-> hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir /scratch/$USER/qwen_model_7b
+> hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir ~/data/qwen_model_7b
 > ```
-> Then add this to the `settings.txt` you already created in step 4:
+> Then add this to the `settings.txt`:
 > ```
-> MODEL_NAME = "/scratch/$USER/qwen_model_7b"
+> MODEL_NAME = "~/data/qwen_model_7b"
 > ```
 > Multiple GPUs in one job are used automatically if you request them —
 > only relevant once you move to a model too large for a single GPU.
