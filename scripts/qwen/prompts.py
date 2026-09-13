@@ -117,17 +117,21 @@ class Decomposer:
         # Warn (once, at startup) if MAX_FRAMES is high enough that
         # TOTAL_PIXEL_BUDGET / MAX_FRAMES would fall below MIN_PIXELS --
         # effective_max_pixels clamps to the floor in that case, which
-        # means actual VRAM use CAN exceed the intended budget.
-        budget_per_frame = self.config.total_pixel_budget // max(self.config.max_frames, 1)
-        if budget_per_frame < self.config.min_pixels:
-            logger.warning(
-                "MAX_FRAMES=%d with TOTAL_PIXEL_BUDGET=%d implies only %d px/frame, "
-                "below MIN_PIXELS=%d -- clamping to the floor, so actual VRAM use "
-                "may exceed TOTAL_PIXEL_BUDGET. Lower MAX_FRAMES or MIN_PIXELS if "
-                "you hit a CUDA out-of-memory error.",
-                self.config.max_frames, self.config.total_pixel_budget,
-                budget_per_frame, self.config.min_pixels,
-            )
+        # means actual VRAM use CAN exceed the intended budget. Only
+        # applies when TOTAL_PIXEL_BUDGET is explicitly set -- in the
+        # default (unbounded) case, resolution is always max_pixels
+        # regardless of max_frames, so this clamping can't happen.
+        if self.config.total_pixel_budget is not None:
+            budget_per_frame = self.config.total_pixel_budget // max(self.config.max_frames, 1)
+            if budget_per_frame < self.config.min_pixels:
+                logger.warning(
+                    "MAX_FRAMES=%d with TOTAL_PIXEL_BUDGET=%d implies only %d px/frame, "
+                    "below MIN_PIXELS=%d -- clamping to the floor, so actual VRAM use "
+                    "may exceed TOTAL_PIXEL_BUDGET. Lower MAX_FRAMES or MIN_PIXELS if "
+                    "you hit a CUDA out-of-memory error.",
+                    self.config.max_frames, self.config.total_pixel_budget,
+                    budget_per_frame, self.config.min_pixels,
+                )
 
     def _build_few_shot_turns(self, examples: list[ICDSample]) -> list[dict]:
         """
@@ -372,14 +376,18 @@ class Decomposer:
                 max_new_tokens=self.config.max_new_tokens,
             )
         except torch.cuda.OutOfMemoryError:
+            budget_str = self.config.total_pixel_budget if self.config.total_pixel_budget is not None else "unbounded"
             logger.error(
                 "CUDA out of memory during generation. This is almost always "
                 "fixed by lowering settings in settings.txt, in order of impact:\n"
-                "  1) MAX_FRAMES (also lowers effective per-frame pixels automatically)\n"
-                "  2) TOTAL_PIXEL_BUDGET (directly caps total VRAM cost)\n"
+                "  1) MAX_FRAMES (with TOTAL_PIXEL_BUDGET unset/unbounded -- the "
+                "default -- this directly lowers VRAM cost without changing "
+                "per-frame resolution)\n"
+                "  2) Set TOTAL_PIXEL_BUDGET explicitly to cap total VRAM instead "
+                "(trades per-frame resolution down as MAX_FRAMES grows)\n"
                 "  3) --batch-size on the command line (already defaults to 1)\n"
-                "Current settings: max_frames=%d, effective_max_pixels=%d (budget=%d)",
-                self.config.max_frames, self.config.effective_max_pixels, self.config.total_pixel_budget,
+                "Current settings: max_frames=%d, effective_max_pixels=%d (budget=%s)",
+                self.config.max_frames, self.config.effective_max_pixels, budget_str,
             )
             raise
 
@@ -506,8 +514,9 @@ def main() -> None:
 
     logger.info("Model: %s (size=%s, 4bit=%s)",
                 config.resolved_model_name, config.model_size, config.load_in_4bit)
-    logger.info("max_frames=%d, effective_max_pixels=%d (auto-scaled from total_pixel_budget=%d, ceiling=%d)",
-                config.max_frames, config.effective_max_pixels, config.total_pixel_budget, config.max_pixels)
+    budget_str = config.total_pixel_budget if config.total_pixel_budget is not None else "unbounded"
+    logger.info("max_frames=%d, effective_max_pixels=%d (total_pixel_budget=%s, ceiling=%d)",
+                config.max_frames, config.effective_max_pixels, budget_str, config.max_pixels)
 
     dataset = ICDDataset(config)
     logger.info("Loaded %d valid sample(s).", len(dataset))

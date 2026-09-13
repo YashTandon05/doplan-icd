@@ -143,14 +143,17 @@ class Config:
                                              # auto-scaled down from this as max_frames grows; see effective_max_pixels
     max_frames: int = 64                    # cap on TOTAL frames sampled per video, regardless of clip length.
                                              # This is the main lever for how much temporal detail the model gets --
-                                             # more frames = better chance of catching lane changes/turns, at the
-                                             # cost of per-frame resolution (auto-traded off, see total_pixel_budget).
-    total_pixel_budget: int = 16 * 256 * 28 * 28  # TOTAL pixels across all sampled frames combined. This is what
-                                             # actually determines VRAM cost. effective_max_pixels below auto-derives
-                                             # the per-frame value from (budget / max_frames), clamped to [min_pixels,
-                                             # max_pixels] -- so raising MAX_FRAMES automatically lowers per-frame
-                                             # resolution to compensate, and you never have to hand-balance the two
-                                             # against each other to avoid an OOM.
+                                             # more frames = better chance of catching lane changes/turns. With
+                                             # total_pixel_budget left unset (the default), raising this costs more
+                                             # total VRAM but never touches per-frame resolution -- see below.
+    total_pixel_budget: int | None = None   # OPTIONAL cap on total pixels across all sampled frames combined.
+                                             # Default (None) = unbounded: every frame gets the full max_pixels
+                                             # resolution regardless of max_frames, so raising MAX_FRAMES is the
+                                             # ONLY thing you need to touch to use more compute -- resolution
+                                             # never silently degrades as a side effect. Only set this explicitly
+                                             # if you need to CAP total VRAM (e.g. back on a small single GPU) --
+                                             # in that case effective_max_pixels below auto-derives the per-frame
+                                             # value from (budget / max_frames), clamped to [min_pixels, max_pixels].
 
     # --- Few-shot examples ---
     # TODO(future): once more ICD pairs are available, replace this wih train/test split
@@ -186,19 +189,26 @@ class Config:
     @property
     def effective_max_pixels(self) -> int:
         """
-        The per-frame max_pixels actually passed to the model, auto-scaled
-        down as max_frames grows so total (frames x pixels) VRAM cost stays
-        roughly constant at total_pixel_budget. This is what makes it safe
-        to raise MAX_FRAMES in settings.txt without separately re-tuning
-        MAX_PIXELS by hand -- MAX_PIXELS becomes a ceiling this can't
-        exceed, not a fixed value.
+        The per-frame max_pixels actually passed to the model.
 
-        Caveat: if max_frames is pushed high enough that the budget-implied
-        per-frame value would fall below min_pixels, this clamps to
-        min_pixels instead -- meaning total VRAM usage CAN exceed
-        total_pixel_budget at extreme frame counts, since resolution can't
-        usefully go below the floor.
+        With total_pixel_budget left at its default (None, unbounded),
+        this is simply max_pixels -- every frame gets the full resolution
+        ceiling regardless of max_frames, so raising MAX_FRAMES is the
+        only setting you need to touch to use more compute. Total VRAM
+        cost then scales directly with max_frames, uncapped.
+
+        If total_pixel_budget IS set (opting into the old capped
+        behavior, e.g. to fit a smaller GPU), this auto-scales per-frame
+        resolution down as max_frames grows so total (frames x pixels)
+        VRAM cost stays roughly constant at that budget -- clamped to
+        [min_pixels, max_pixels], with the caveat that if max_frames is
+        pushed high enough that the budget-implied per-frame value would
+        fall below min_pixels, this clamps to min_pixels instead, meaning
+        total VRAM usage CAN exceed total_pixel_budget at extreme frame
+        counts, since resolution can't usefully go below the floor.
         """
+        if self.total_pixel_budget is None:
+            return self.max_pixels
         budget_per_frame = self.total_pixel_budget // max(self.max_frames, 1)
         return max(self.min_pixels, min(self.max_pixels, budget_per_frame))
 

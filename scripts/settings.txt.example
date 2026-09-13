@@ -62,10 +62,11 @@ LOAD_IN_4BIT = "false"
 # DECOMPOSITION_PROMPT = "Instruction: {instruction}\nBreak this down into steps..."
 # SCENE_DESCRIPTION_PROMPT = "Describe only what is visible in this video..."
 
-
 MIN_PIXELS = 50176
 MAX_PIXELS = 200704
-TOTAL_PIXEL_BUDGET = 3211264
+
+# Only uncomment this if you need to CAP total VRAM
+# TOTAL_PIXEL_BUDGET = 3211264
 
 # Skips MODEL_SIZE and loads from this exact path/repo instead.
 # Useful once you've downloaded a model locally (faster, works offline).
