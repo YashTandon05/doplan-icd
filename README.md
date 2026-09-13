@@ -78,11 +78,11 @@ MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_7b"
 > batch job will likely just time out. Pre-download on a login node,
 > while you still have internet:
 > ```
-> hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir /scratch/$USER/qwen_model_7b
+> hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir ~/data/qwen_model_7b
 > ```
-> Then add this to the `settings.txt` you already created in step 4:
+> Then add this to the `settings.txt`:
 > ```
-> MODEL_NAME = "/scratch/$USER/qwen_model_7b"
+> MODEL_NAME = "~/data/qwen_model_7b"
 > ```
 > Multiple GPUs in one job are used automatically if you request them —
 > only relevant once you move to a model too large for a single GPU.
@@ -100,6 +100,16 @@ Results are written to `RESULTS_FILE` from `settings.txt` (default
 If anything goes wrong — read the `[ERROR]` line, it usually
 tells you which `settings.txt` value to change.
 
+## Evaluation
+```
+python evaluate.py                            # scores RESULTS_FILE, prints a table
+python evaluate.py --out scores.csv           # also writes a per-sample CSV
+python evaluate.py --results other_run.json   # score a specific file instead
+```
+Reports turn-sequence agreement, turn-count agreement, semantic similarity 
+and how often predictions vs. ground truths mention lane positioning.
+ 
+
 **Reviewing results against the actual video**: `review.py` reads from
 the same `RESULTS_FILE`. Run this from inside `scripts/qwen` :
 ```
@@ -113,3 +123,8 @@ If you're not in that folder, you can use the full path instead:
 python scripts/qwen/prompts.py --limit 2
 python scripts/qwen/review.py 9
 ```
+
+> **On an HPC cluster**: `review.py` still works for reading predictions,
+> ground truth, and GPS context — it just probably can't open the video.
+>  To actually watch a clip, copy the printed video path back to
+> your own machine.
