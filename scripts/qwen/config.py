@@ -92,6 +92,7 @@ DEFAULT_SETTINGS_FILE = _find_default_settings_file()
 MODEL_PRESETS: dict[str, str] = {
     "3B": "Qwen/Qwen2.5-VL-3B-Instruct",
     "7B": "Qwen/Qwen2.5-VL-7B-Instruct",
+    "72B": "Qwen/Qwen2.5-VL-72B-Instruct"
     # Example once downloaded locally:
     # "7B": "C:/path/to/doplan-icd/scripts/qwen/qwen_model",
 }

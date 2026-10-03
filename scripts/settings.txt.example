@@ -38,8 +38,13 @@ MAX_FRAMES = 64
 
 USE_GPS_CONTEXT = "false"
 
+# MODEL_SIZE = "72B"
 MODEL_SIZE = "7B"
 # MODEL_SIZE = "3B"
+
+# Skips MODEL_SIZE and loads from this exact path/repo instead.
+# Useful once you've downloaded a model locally (faster, works offline).
+# MODEL_NAME = C:\doplan-icd\scripts\qwen\qwen_model
 
 TWO_STAGE_GROUNDING = "false"
 
@@ -67,10 +72,6 @@ MAX_PIXELS = 200704
 
 # Only uncomment this if you need to CAP total VRAM
 # TOTAL_PIXEL_BUDGET = 3211264
-
-# Skips MODEL_SIZE and loads from this exact path/repo instead.
-# Useful once you've downloaded a model locally (faster, works offline).
-# MODEL_NAME = C:\doplan-icd\scripts\qwen\qwen_model
 
 # How long the model's answer can be. If output looks cut off mid-
 # sentence, raise this
