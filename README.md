@@ -63,14 +63,14 @@ VIDEO_PATH = "C:/path/to/las_vegas_8/las_vegas_8, C:/path/to/pittsburgh_1/pittsb
 Either let the script auto-download on first run (slower, needs internet
 every time unless cached), or pre-download for faster/offline loading:
 ```
-hf download Qwen/Qwen2.5-VL-3B-Instruct --local-dir ./qwen_model_3b
 hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir ./qwen_model_7b
+hf download Qwen/Qwen2.5-VL-72B-Instruct --local-dir ./qwen_model_72b
 ```
 If you pre-download, point `MODEL_NAME` in the `settings.txt` you just
 created at those folders — otherwise `MODEL_SIZE` (already set to a
 sensible default) picks between the two automatically:
 ```
-MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_7b"
+MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_72b"
 ```
 
 > **On a HPC cluster, do this instead of the above:** if compute nodes
@@ -78,11 +78,11 @@ MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_7b"
 > batch job will likely just time out. Pre-download on a login node,
 > while you still have internet:
 > ```
-> hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir ~/data/qwen_model_7b
+> hf download Qwen/Qwen2.5-VL-72B-Instruct --local-dir ~/data/qwen_model_72b
 > ```
 > Then add this to the `settings.txt`:
 > ```
-> MODEL_NAME = "~/data/qwen_model_7b"
+> MODEL_NAME = "~/data/qwen_model_72b"
 > ```
 > Multiple GPUs in one job are used automatically if you request them —
 > only relevant once you move to a model too large for a single GPU.
