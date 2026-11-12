@@ -3,11 +3,6 @@
 Runs Qwen2.5-VL over ICD clips to decompose
 long-horizon driving instructions into sub-instructions 
 
-> **Keep these files together in one folder** (currently `scripts/qwen/`):
-> `config.py`, `dataset.py`, `prompts.py`, `review.py`,
-> `gps_utils.py`. `settings.txt` is the one
-> exception — it lives at the **project root** 
-
 ## Setup
 
 **1. Get the code and a virtual environment**
@@ -30,7 +25,7 @@ nvidia-smi
 > inside an interactive GPU session instead.
 
 Note the "CUDA Version" shown top-right, then install the matching build
-(swap `cu126` below for whatever matches — see
+(swap `cu126` below for whatever matches: see
 [pytorch.org/get-started](https://pytorch.org/get-started/locally/) for the
 exact command for your driver):
 ```
@@ -44,12 +39,12 @@ This must print `True` and your GPU's name.
 
 **3. Install the rest**
 ```
-pip install -r requirements.txt
+pip install -r scripts/requirements.txt
 ```
 
 **4. Configure your paths**
 ```
-cp settings.example.txt settings.txt
+cp scripts/settings.txt.example settings.txt
 ```
 Edit `settings.txt` at the **project root**: set `CSV_PATH` and
 `VIDEO_PATH` to your data. Add more video paths as needed. 
@@ -67,7 +62,7 @@ hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir ./qwen_model_7b
 hf download Qwen/Qwen2.5-VL-72B-Instruct --local-dir ./qwen_model_72b
 ```
 If you pre-download, point `MODEL_NAME` in the `settings.txt` you just
-created at those folders — otherwise `MODEL_SIZE` (already set to a
+created at those folders, otherwise `MODEL_SIZE` (already set to a
 sensible default) picks between the two automatically:
 ```
 MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_72b"
@@ -84,7 +79,7 @@ MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_72b"
 > ```
 > MODEL_NAME = "~/data/qwen_model_72b"
 > ```
-> Multiple GPUs in one job are used automatically if you request them —
+> Multiple GPUs in one job are used automatically if you request them,
 > only relevant once you move to a model too large for a single GPU.
 
 ## Running prompting
@@ -97,7 +92,7 @@ python prompts.py             # full run
 Results are written to `RESULTS_FILE` from `settings.txt` (default
 `decomposition_results.json`)
 
-If anything goes wrong — read the `[ERROR]` line, it usually
+If anything goes wrong, read the `[ERROR]` line, it usually
 tells you which `settings.txt` value to change.
 
 ## Evaluation
@@ -125,6 +120,6 @@ python scripts/qwen/review.py 9
 ```
 
 > **On an HPC cluster**: `review.py` still works for reading predictions,
-> ground truth, and GPS context — it just probably can't open the video.
+> ground truth, and GPS context, it just probably can't open the video.
 >  To actually watch a clip, copy the printed video path back to
 > your own machine.
