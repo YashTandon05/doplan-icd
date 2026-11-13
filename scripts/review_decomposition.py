@@ -4,8 +4,8 @@ default player and prints its instruction, prediction, and ground truth
 side by side, for debugging the model
 
 Usage:
-    python review.py           # no pair_id -> lists every available pair_id
-    python review.py 9         # review + open the video for pair_id 9
+    python scripts/review_decomposition.py           # no pair_id -> lists every available pair_id
+    python scripts/review_decomposition.py 9         # review + open the video for pair_id 9
 """
 
 from __future__ import annotations
@@ -17,8 +17,8 @@ import platform
 import subprocess
 from pathlib import Path
 
-from config import load_config
-from gps_utils import build_gps_context_text
+from src.utils.config import load_config
+from src.utils.gps import build_gps_context_text
 
 
 def _is_headless() -> bool:
@@ -65,7 +65,7 @@ def main() -> None:
 
     if not results_path.exists():
         print(f"Results file not found: {results_path}")
-        print("Run prompts.py first, or pass --results <path> if it's somewhere else.")
+        print("Run run_decomposition.py first, or pass --results <path> if it's somewhere else.")
         return
 
     results = json.loads(results_path.read_text())
@@ -74,7 +74,7 @@ def main() -> None:
         print(f"Available pair_ids in {results_path}:")
         for r in results:
             print(f"  {r['pair_id']}: {r['long_instruction']}")
-        print("\nRun `python review.py <pair_id>` (or `review <pair_id>`) to review one.")
+        print("\nRun `python scripts/review_decomposition.py <pair_id>` (or `review <pair_id>`) to review one.")
         return
 
     match = next((r for r in results if str(r["pair_id"]) == str(args.pair_id)), None)
@@ -111,7 +111,7 @@ def main() -> None:
 
     if not video_path:
         print("This result has no video_path (produced with an older version "
-              "of prompts.py) -- re-run to get it in future results.")
+              "of run_decomposition.py) -- re-run to get it in future results.")
     elif not Path(video_path).exists():
         print(f"video_path in the result no longer exists on disk: {video_path}")
     else:

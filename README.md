@@ -3,6 +3,16 @@
 Runs Qwen2.5-VL over ICD clips to decompose
 long-horizon driving instructions into sub-instructions 
 
+## Layout
+```
+src/utils/      config.py, icd_dataset.py, gps.py   shared settings and data loading
+src/decompose/  qwen_decomposer.py                  G: Qwen2.5-VL decomposition
+src/eval/       text_metrics.py                     text-level scoring
+scripts/        command-line entry points (run from the project root)
+results/        outputs (gitignored)
+```
+`settings.txt` lives at the **project root**.
+
 ## Setup
 
 **1. Get the code and a virtual environment**
@@ -37,14 +47,16 @@ python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_
 ```
 This must print `True` and your GPU's name. 
 
-**3. Install the rest**
+**3. Install the rest, and this project as a package**
 ```
-pip install -r scripts/requirements.txt
+pip install -r requirements.txt
+pip install -e .
 ```
+The second line lets `scripts/` import `src` from any folder. Run it once per environment.
 
 **4. Configure your paths**
 ```
-cp scripts/settings.txt.example settings.txt
+cp settings.txt.example settings.txt
 ```
 Edit `settings.txt` at the **project root**: set `CSV_PATH` and
 `VIDEO_PATH` to your data. Add more video paths as needed. 
@@ -65,7 +77,7 @@ If you pre-download, point `MODEL_NAME` in the `settings.txt` you just
 created at those folders, otherwise `MODEL_SIZE` (already set to a
 sensible default) picks between the two automatically:
 ```
-MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_72b"
+MODEL_NAME = "C:/path/to/doplan-icd/qwen_model_72b"
 ```
 
 > **On a HPC cluster, do this instead of the above:** if compute nodes
@@ -82,44 +94,37 @@ MODEL_NAME = "C:/path/to/doplan-icd/scripts/qwen/qwen_model_72b"
 > Multiple GPUs in one job are used automatically if you request them,
 > only relevant once you move to a model too large for a single GPU.
 
-## Running prompting
+## Running decomposition
 
 ```
-python prompts.py --limit 2   # smoke test
-python prompts.py             # full run
+python scripts/run_decomposition.py --limit 2   # smoke test
+python scripts/run_decomposition.py             # full run
 ```
 
 Results are written to `RESULTS_FILE` from `settings.txt` (default
-`decomposition_results.json`)
+`results/decomposition_results.json`)
 
 If anything goes wrong, read the `[ERROR]` line, it usually
 tells you which `settings.txt` value to change.
 
 ## Evaluation
 ```
-python evaluate.py                            # scores RESULTS_FILE, prints a table
-python evaluate.py --out scores.csv           # also writes a per-sample CSV
-python evaluate.py --results other_run.json   # score a specific file instead
+python scripts/score_decomposition.py                            # scores RESULTS_FILE, prints a table
+python scripts/score_decomposition.py --out scores.csv           # also writes a per-sample CSV
+python scripts/score_decomposition.py --results other_run.json   # score a specific file instead
 ```
 Reports turn-sequence agreement, turn-count agreement, semantic similarity 
 and how often predictions vs. ground truths mention lane positioning.
  
 
-**Reviewing results against the actual video**: `review.py` reads from
-the same `RESULTS_FILE`. Run this from inside `scripts/qwen` :
+**Reviewing results against the actual video**: `review_decomposition.py` reads from
+the same `RESULTS_FILE`:
 ```
-cd scripts/qwen
-python review.py       # no pair_id -> lists every available pair_id
-python review.py 9     # prints instruction/prediction/ground truth, opens the video + GPS map
-```
-
-If you're not in that folder, you can use the full path instead:
-```
-python scripts/qwen/prompts.py --limit 2
-python scripts/qwen/review.py 9
+python scripts/review_decomposition.py      # no pair_id -> lists every available pair_id
+python scripts/review_decomposition.py 9    # prints instruction/prediction/ground truth, opens the video + GPS map
 ```
 
-> **On an HPC cluster**: `review.py` still works for reading predictions,
+> **On an HPC cluster**: `review_decomposition.py` still works for reading predictions,
 > ground truth, and GPS context, it just probably can't open the video.
 >  To actually watch a clip, copy the printed video path back to
 > your own machine.

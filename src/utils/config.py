@@ -9,7 +9,7 @@ How settings flow together:
        after `hf download`, or a bare HF repo id to auto-download).
     2. settings.txt -- each person's file with their own
        CSV_PATH / VIDEO_PATH / MODEL_SIZE / etc.
-       See settings.example.txt for a template with every option explained.
+       See settings.txt.example for a template with every option explained.
     3. Config (this file) -- reads settings.txt, fills in any values that
        were omitted with the defaults below, and validates everything
 """
@@ -22,11 +22,12 @@ from pathlib import Path
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent.parent
 
 
 # ------------------------------------------------------------------------
 # Default prompt text. Overridable per-line in settings.txt (see
-# DECOMPOSITION_PROMPT / SCENE_DESCRIPTION_PROMPT in settings.example.txt)
+# DECOMPOSITION_PROMPT / SCENE_DESCRIPTION_PROMPT in settings.txt.example)
 # CAUTION if you override these in settings.txt:
 #   - Keep the literal text "{instruction}" somewhere in
 #     DECOMPOSITION_PROMPT
@@ -73,7 +74,7 @@ def _find_default_settings_file() -> Path:
         candidate = directory / "settings.txt"
         if candidate.exists():
             return candidate
-    return SCRIPT_DIR / "settings.txt"
+    return PROJECT_ROOT / "settings.txt"
 
 
 DEFAULT_SETTINGS_FILE = _find_default_settings_file()
@@ -94,7 +95,7 @@ MODEL_PRESETS: dict[str, str] = {
     "7B": "Qwen/Qwen2.5-VL-7B-Instruct",
     "72B": "Qwen/Qwen2.5-VL-72B-Instruct"
     # Example once downloaded locally:
-    # "7B": "C:/path/to/doplan-icd/scripts/qwen/qwen_model",
+    # "7B": "C:/path/to/doplan-icd/qwen_model",
 }
 
 
@@ -135,7 +136,7 @@ class Config:
 
     use_gps_context: bool = False           # off by default. Injects GPS position data into the prompt -- one
                                              # reading per video frame the model sees, as north/east meters (see
-                                             # gps_utils.py). No turns are pre-identified; the model works those
+                                             # src/utils/gps.py). No turns are pre-identified; the model works those
                                              # out itself from the raw position data plus the video.
 
     min_pixels: int = 64 * 28 * 28          # hard floor on per-frame resolution -- never goes below this even
@@ -161,13 +162,13 @@ class Config:
     example_pair_ids: tuple[str, ...] = ()  # default: zero-shot. Treat as an experimental opt-in for now --
                                              # worth revisiting once the train/test split above exists.
 
-    # --- Networking / auth (see prompts.py's hub-download fix) ---
+    # --- Networking / auth (see qwen_decomposer.py's hub-download fix) ---
     hf_token: str | None = None
     download_timeout: int = 60
 
     # --- Output ---
-    results_file: Path = Path("decomposition_results.json")  # shared by prompts.py (writes here by
-                                                               # default) and review.py (reads from here by
+    results_file: Path = Path("decomposition_results.json")  # shared by run_decomposition.py (writes here by
+                                                               # default) and review_decomposition.py (reads from here by
                                                                # default)
 
     @property
@@ -335,10 +336,10 @@ def load_config(settings_file: Path | None = None) -> Config:
             value = os.path.expanduser(value)
         kwargs[field_name] = value
 
-    # Anchor results_file to this tool's own folder (scripts/qwen)
+    # Anchor results_file to this tool's own folder (results/ at the project root)
     results_file = kwargs.get("results_file", Path("decomposition_results.json"))
     if not results_file.is_absolute():
-        results_file = (SCRIPT_DIR / results_file).resolve()
+        results_file = (PROJECT_ROOT / "results" / results_file).resolve()
     kwargs["results_file"] = results_file
 
     return Config(**kwargs)
