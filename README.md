@@ -35,7 +35,7 @@ nvidia-smi
 > inside an interactive GPU session instead.
 
 Note the "CUDA Version" shown top-right, then install the matching build
-(swap `cu126` below for whatever matches — see
+(swap `cu126` below for whatever matches: see
 [pytorch.org/get-started](https://pytorch.org/get-started/locally/) for the
 exact command for your driver):
 ```
@@ -74,7 +74,7 @@ hf download Qwen/Qwen2.5-VL-7B-Instruct --local-dir ./qwen_model_7b
 hf download Qwen/Qwen2.5-VL-72B-Instruct --local-dir ./qwen_model_72b
 ```
 If you pre-download, point `MODEL_NAME` in the `settings.txt` you just
-created at those folders — otherwise `MODEL_SIZE` (already set to a
+created at those folders, otherwise `MODEL_SIZE` (already set to a
 sensible default) picks between the two automatically:
 ```
 MODEL_NAME = "C:/path/to/doplan-icd/qwen_model_72b"
@@ -91,7 +91,7 @@ MODEL_NAME = "C:/path/to/doplan-icd/qwen_model_72b"
 > ```
 > MODEL_NAME = "~/data/qwen_model_72b"
 > ```
-> Multiple GPUs in one job are used automatically if you request them —
+> Multiple GPUs in one job are used automatically if you request them,
 > only relevant once you move to a model too large for a single GPU.
 
 ## Running decomposition
@@ -104,7 +104,7 @@ python scripts/run_decomposition.py             # full run
 Results are written to `RESULTS_FILE` from `settings.txt` (default
 `results/decomposition_results.json`)
 
-If anything goes wrong — read the `[ERROR]` line, it usually
+If anything goes wrong, read the `[ERROR]` line, it usually
 tells you which `settings.txt` value to change.
 
 ## Evaluation
