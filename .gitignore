@@ -1,5 +1,5 @@
-scripts/settings.txt
-decomposition_results.json
+settings.txt
+results/
 
 # Videos
 *.mp4
@@ -7,13 +7,12 @@ data/videos/
 data/clip_frames/
 
 # Model files
-qwen_model/
+qwen_model*/
 *.gguf
 *.bin
 *.safetensors
 *.pt
 *.pth
-qwen_model/
 
 # ---- Python ----
 __pycache__/

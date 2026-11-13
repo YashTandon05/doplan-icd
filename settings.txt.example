@@ -82,5 +82,5 @@ MAX_NEW_TOKENS = 256
 # HF_TOKEN = "hf_..."
 DOWNLOAD_TIMEOUT = 60
 
-# Where decompose_and_run.py writes results and review.py reads them from.
+# Where run_decomposition.py writes results and review_decomposition.py reads them from (relative paths go in results/).
 RESULTS_FILE = "decomposition_results.json"

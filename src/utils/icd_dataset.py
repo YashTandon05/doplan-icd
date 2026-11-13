@@ -12,7 +12,7 @@ from pathlib import Path
 import pandas as pd
 from torch.utils.data import Dataset
 
-from config import Config
+from src.utils.config import Config
 
 logger = logging.getLogger(__name__)
 
